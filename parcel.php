@@ -34,24 +34,26 @@ class Parcel
         return $this->weight;
     }
 }
-
-    $package= new Parcel($_GET['height'], $_GET['width'], $_GET['length'],
+    $constructed = false;
+    if (!(empty($_GET['height']) && empty($_GET['width']) && empty($_GET['length'])
+            && empty($_GET['weight']))) {
+        $package= new Parcel($_GET['height'], $_GET['width'], $_GET['length'],
             $_GET['weight']);
-
-
+        $constructed = true;
+    }
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Cost to Ship Your Package</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
     <h1>Dimensions and Weight.</h1>
     <ul>
         <?php
-            $emptyTest = (array) $package;
-            if (empty($emptytest)) {
+            if (!$constructed) {
                 echo "You need to specify package dimensions.";
             } else {
                 echo "<li>Weight: " . $package->getWeight() . "</li>";

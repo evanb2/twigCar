@@ -43,6 +43,7 @@ class Triangle {
 <html>
 <head>
     <title>Triangle Test</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
     <h1>Here's Your Triangle :)</h1>
