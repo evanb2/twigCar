@@ -5,11 +5,20 @@ class Car
     public $price;
     public $miles;
 
+    function __construct($make_model = "generic car", $price = 0, $miles = 0) {
+        $this->make_model = $make_model;
+        $this->price = $price;
+        $this->miles = $miles;
+    }
+
     function worthBuying($max_price)
     {
     return $this->price < ($max_price + 100);
     }
 }
+
+$subaru = new Car("Subaru", 45000, 35000);
+$boringCar = new Car();
 
 
 $porsche = new Car();
@@ -32,7 +41,7 @@ $mercedes->make_model = "Mercedes Benz CLS550";
 $mercedes->price = 39900;
 $mercedes->miles = 37979;
 
-$cars = array($porsche, $ford, $lexus, $mercedes);
+$cars = array($subaru, $boringCar, $porsche, $ford, $lexus, $mercedes);
 
 $cars_matching_search = array();
 foreach ($cars as $car) {
