@@ -6,8 +6,8 @@ class Car
     private $miles;
     private $image;
 
-    function __construct($make_model = "generic car", $price = 0, $miles = 0,
-            $image = "#") {
+    function __construct($make_model = "generic car", $price = 99999999,
+            $miles = 9999999, $image = "#") {
         $this->make_model = $make_model;
         $this->price = $price;
         $this->miles = $miles;
@@ -103,13 +103,17 @@ foreach ($cars as $car) {
     <h1>Your Car Dealership</h1>
     <ul>
         <?php
-            foreach ($cars_matching_search as $car) {
-                echo "<li> " . $car->getModel() . " </li>";
-                echo "<ul>";
-                    echo "<li> $" . $car->getPrice() . " </li>";
-                    echo "<li> Miles: " . $car->getMiles() . " </li>";
-                    echo '<li><img src="' . $car->getImage() . '"></li>';
-                echo "</ul>";
+            if (empty($cars_matching_search)) {
+                echo "We're out of jumping cars at that price/mileage!!!";
+            } else {
+                foreach ($cars_matching_search as $car) {
+                    echo "<li> " . $car->getModel() . " </li>";
+                    echo "<ul>";
+                        echo "<li> $" . $car->getPrice() . " </li>";
+                        echo "<li> Miles: " . $car->getMiles() . " </li>";
+                        echo '<li><img src="' . $car->getImage() . '"></li>';
+                    echo "</ul>";
+                }
             }
         ?>
     </ul>
