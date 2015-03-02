@@ -14,9 +14,13 @@ class Car
         $this->image = $image;
     }
 
-    function worthBuying($max_price)
+    function worthBuyingPrice($max_price)
     {
     return $this->price < ($max_price + 100);
+    }
+    function worthBuyingMiles($miles)
+    {
+    return $this->miles < ($miles + 100);
     }
 
     // getters
@@ -57,21 +61,25 @@ $porsche = new Car();
 $porsche->setModel("2014 Porsche 911");
 $porsche->setPrice(114991);
 $porsche->setMiles(7864);
+$porsche->setImage("img/porsche.jpg");
 
 $ford = new Car();
 $ford->setModel("2011 Ford F450");
 $ford->setPrice(55995);
 $ford->setMiles(14241);
+$ford->setImage("img/ford.jpg");
 
 $lexus = new Car();
 $lexus->setModel("2013 Lexus RX 350");
 $lexus->setPrice(44700);
 $lexus->setMiles(20000);
+$lexus->setImage("img/lexus.jpg");
 
 $mercedes = new Car();
 $mercedes->setModel("Mercedes Benz CLS550");
 $mercedes->setPrice(39900);
 $mercedes->setPrice(37979);
+$mercedes->setImage("img/mercedes.jpg");
 
 $porsche->setPrice(120000);
 
@@ -79,7 +87,8 @@ $cars = array($subaru, $boringCar, $porsche, $ford, $lexus, $mercedes);
 
 $cars_matching_search = array();
 foreach ($cars as $car) {
-    if ($car->worthBuying($_GET['price'])) {
+    if ($car->worthBuyingPrice($_GET['price']) &&
+            $car->worthBuyingMiles($_GET['miles'])) {
         array_push($cars_matching_search, $car);
     }
 }
