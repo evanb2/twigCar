@@ -1,0 +1,32 @@
+img {
+    width: 300px;
+    height: auto;
+
+}
+
+li {
+    list-style-type: none;
+}
+
+.car {
+    float: left;
+    border-style: solid;
+    border-width: 2;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.empty {
+    float: left;
+}
+
+h1 {
+    text-align: center;
+}
+
+@media(max-width:1600px){
+    img {
+        width: 220px;
+        height: auto;
+    }
+}
