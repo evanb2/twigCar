@@ -6,21 +6,12 @@ class Car
     private $miles;
     private $image;
 
-    function __construct($make_model = "generic car", $price = 99999999,
-            $miles = 9999999, $image = "#") {
+    function __construct($make_model, $price,
+            $miles, $image) {
         $this->make_model = $make_model;
         $this->price = $price;
         $this->miles = $miles;
         $this->image = $image;
-    }
-
-    function worthBuyingPrice($max_price)
-    {
-    return $this->price < ($max_price + 100);
-    }
-    function worthBuyingMiles($miles)
-    {
-    return $this->miles < ($miles + 100);
     }
 
     // getters
@@ -39,93 +30,31 @@ class Car
 
 
     // setters
-    function setModel($make_model) {
-        $this->make_model = $make_model;
+    function setModel($new_make_model) {
+        $this->make_model = (string) $new_make_model;
     }
-    function setPrice($price) {
-        $this->price = $price;
+    function setPrice($new_price) {
+        $this->price = (string) $new_price;
     }
-    function setMiles($miles) {
-        $this->miles = $miles;
+    function setMiles($new_miles) {
+        $this->miles = (string) $new_miles;
     }
-    function setImage($image) {
-        $this->image = $image;
+    function setImage($new_image) {
+        $this->image = (string) $new_image;
     }
-}
 
-$subaru = new Car("Subaru", 45000, 35000, "img/subaru.jpg");
-$boringCar = new Car();
+    function save()
+    {
+        array_push($_SESSION['list_of_cars'], $this);
+    }
 
-
-$porsche = new Car();
-$porsche->setModel("2014 Porsche 911");
-$porsche->setPrice(114991);
-$porsche->setMiles(7864);
-$porsche->setImage("img/porsche.jpg");
-
-$ford = new Car();
-$ford->setModel("2011 Ford F450");
-$ford->setPrice(55995);
-$ford->setMiles(14241);
-$ford->setImage("img/ford.jpg");
-
-$lexus = new Car();
-$lexus->setModel("2013 Lexus RX 350");
-$lexus->setPrice(44700);
-$lexus->setMiles(20000);
-$lexus->setImage("img/lexus.jpg");
-
-$mercedes = new Car();
-$mercedes->setModel("Mercedes Benz CLS550");
-$mercedes->setPrice(39900);
-$mercedes->setPrice(37979);
-$mercedes->setImage("img/mercedes.jpg");
-
-$porsche->setPrice(120000);
-
-$cars = array($subaru, $boringCar, $porsche, $ford, $lexus, $mercedes);
-
-$cars_matching_search = array();
-foreach ($cars as $car) {
-    if ($car->worthBuyingPrice($_GET['price']) &&
-            $car->worthBuyingMiles($_GET['miles'])) {
-        array_push($cars_matching_search, $car);
+    static function getAll()
+    {
+        return $_SESSION['list_of_cars'];
+    }
+    static function deleteAll()
+    {
+        $_SESSION['list_of_cars'] = array();
     }
 }
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Jumping Dealership's Homepage</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/carstyles.css">
-</head>
-<body>
-    <h1>Jumping Car Dealership</h1>
-    <div class="container">
-    <ul>
-        <?php
-            if (empty($cars_matching_search)) {
-                echo "We're out of jumping cars at that price/mileage!!!";
-            } else {
-                foreach ($cars_matching_search as $car) {
-                    echo '<div class="row">';
-                    echo '<div class="col-md-4 empty"></div>';
-                    echo '<div class="col-md-4 car">';
-                    echo "<li><h3> " . $car->getModel() . " </h3></li>";
-                    echo "<ul>";
-                        echo "<li> $" . $car->getPrice() . " </li>";
-                        echo "<li> <strong>Miles:</strong> " . $car->getMiles() . " </li>";
-                        echo '<li><img src="' . $car->getImage() . '"></li>';
-                    echo "</ul>";
-                    echo "<p />";
-                    echo '</div>';
-                    echo '<div class="col-md-4 empty"></div></div>';
-                }
-            }
-        ?>
-    </ul>
-    </div>
-</body>
-</html>
