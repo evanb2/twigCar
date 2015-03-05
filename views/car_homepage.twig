@@ -44,13 +44,27 @@
         </p>
 
         <p>
-        <button type='submit'>Add Post</button>
+        <button type='submit' class="btn-success">Add Post</button>
         </p>
 
     </form>
     <form action='/delete_cars' method='post'>
-        <button type='submit'>Delete</button>
+        <button type='submit'>Delete ALL</button>
     </form>
+
+
+        <h1>Find a Car!</h1>
+        <form action='search_results' method='post'>
+            <div class='form-group'>
+                <label for='user_price'>Enter Maximun Price:</label>
+                <input id='user_price' name='user_price' class='form-control' type='number'>
+            </div>
+            <div class='form-group'>
+                <label for='user_mileage'>Enter Maximum Mileage:</label>
+                <input id='user_mileage' name='user_mileage' class='form-control' type='number'>
+
+            <button type='submit' class='btn-success'>Submit</button>
+        </form>
     </div>
 </body>
 </html>

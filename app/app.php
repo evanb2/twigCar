@@ -1,4 +1,5 @@
 <?php
+
     require_once __DIR__."/../vendor/autoload.php";
     require_once __DIR__."/../src/car.php";
 
@@ -25,6 +26,17 @@
     $app->post("/delete_cars", function() use ($app) {
         Car::deleteAll();
         return $app['twig']->render('delete_cars.twig');
+    });
+
+    $app->post("/search_results", function() use ($app) {
+        $all_cars = Car::getAll();
+        $cars_matching_search = array();
+        foreach ($all_cars as $car) {
+            if ($car->worthBuying($_POST['user_price'])) {
+                array_push($cars_matching_search, $car);
+            }
+        }
+        return $app['twig']->render('search_results.twig', array('results' => $cars_matching_search));
     });
 
 

@@ -51,9 +51,15 @@ class Car
     {
         return $_SESSION['list_of_cars'];
     }
+
     static function deleteAll()
     {
         $_SESSION['list_of_cars'] = array();
+    }
+
+    function worthBuying($max_price)
+    {
+        return $this->price < $max_price;
     }
 }
 ?>
