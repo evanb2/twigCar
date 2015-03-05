@@ -5,33 +5,52 @@
     <link rel="stylesheet" href="css/carstyles.css">
 </head>
 <body>
+    <div class='container'>
     <h1>Jumping Car Dealership</h1>
     {% if cars is not empty %}
-        <p>Car Listing</p>
-        <ul>
+        <h2>Car Listing</h2>
             {% for car in cars %}
+            <ul>
                 <li>{{ car.getModel }}</li>
-                <li>{{ car.getPrice }}</li>
-                <li>{{ car.getMiles }}</li>
-                <li>{{ car.getImage }}</li>
+                    <ul>
+                        <li>${{ car.getPrice }}</li>
+                        <li>{{ car.getMiles }} miles</li>
+                        <li><img src='{{ car.getImage }}'></li>
+                    </ul>
+            </ul>
+
             {% endfor %}
-        </ul>
     {% endif %}
 
     <form action='/create_car' method='post'>
+        <p>
         <label for='model'>Model: </label>
         <input id='model' name='model' type='text'>
+        </p>
+
+        <p>
         <label for='price'>Price: </label>
         <input id='price' name='price' type='text'>
+        </p>
+
+        <p>
         <label for='miles'>Miles: </label>
         <input id='miles' name='miles' type='text'>
+        </p>
+
+        <p>
         <label for='image'>Image: </label>
         <input id='image' name='image' type='text'>
+        </p>
 
+        <p>
         <button type='submit'>Add Post</button>
+        </p>
+
     </form>
     <form action='/delete_cars' method='post'>
         <button type='submit'>Delete</button>
     </form>
+    </div>
 </body>
 </html>
