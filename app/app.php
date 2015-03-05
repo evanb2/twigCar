@@ -16,8 +16,8 @@
         return $app['twig']->render('car_homepage.twig', array('cars' => Car::getAll()));
     });
 
-    $app->post("/listing", function() use ($app) {
-        $car = new Car($_POST['make', 'price', 'miles', 'image']);
+    $app->post("/create_car", function() use ($app) {
+        $car = new Car($_POST['model'], $_POST['price'], $_POST['miles'], $_POST['image']);
         $car ->save();
         return $app['twig']->render('create_car.twig', array('newcar' => $car));
     });

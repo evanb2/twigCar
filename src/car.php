@@ -6,8 +6,7 @@ class Car
     private $miles;
     private $image;
 
-    function __construct($make_model, $price,
-            $miles, $image) {
+    function __construct($make_model, $price, $miles, $image) {
         $this->make_model = $make_model;
         $this->price = $price;
         $this->miles = $miles;
