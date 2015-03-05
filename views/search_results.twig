@@ -9,11 +9,12 @@
     {% endif %}
     {% for car in results %}
         <ul>
-            <li>{{ car.getPrice }}</li>
+            <li>${{ car.getPrice }}</li>
             <li>{{ car.getModel }}</li>
-            <li>{{ car.getMiles }}</li>
-            <p><img src='{{ car.getImage }}'></p>
+            <li>{{ car.getMiles }} miles</li>
         </ul>
+            <p><img src='{{ car.getImage }}'></p>
     {% endfor %}
+    <p><a href='/'>View our complete car listing!</a></p>
 </body>
 </html>

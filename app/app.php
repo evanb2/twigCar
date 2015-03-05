@@ -32,7 +32,7 @@
         $all_cars = Car::getAll();
         $cars_matching_search = array();
         foreach ($all_cars as $car) {
-            if ($car->worthBuying($_POST['user_price'])) {
+            if ($car->searchPrice($_POST['user_price']) && $car->searchMiles($_POST['user_mileage'])) {
                 array_push($cars_matching_search, $car);
             }
         }

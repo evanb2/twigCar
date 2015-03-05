@@ -57,9 +57,14 @@ class Car
         $_SESSION['list_of_cars'] = array();
     }
 
-    function worthBuying($max_price)
+    function searchMiles($max_miles)
     {
-        return $this->price < $max_price;
+        return $this->miles <= ($max_miles + 100);
+    }
+
+    function searchPrice($max_price)
+    {
+        return $this->price <= $max_price;
     }
 }
 ?>

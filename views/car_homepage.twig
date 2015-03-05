@@ -15,9 +15,10 @@
                     <ul>
                         <li>${{ car.getPrice }}</li>
                         <li>{{ car.getMiles }} miles</li>
-                        <li><img src='{{ car.getImage }}'></li>
                     </ul>
             </ul>
+                        <p><img src='{{ car.getImage }}'></p>
+
 
             {% endfor %}
     {% endif %}
@@ -64,6 +65,7 @@
                 <input id='user_mileage' name='user_mileage' class='form-control' type='number'>
 
             <button type='submit' class='btn-success'>Submit</button>
+            </div>
         </form>
     </div>
 </body>
