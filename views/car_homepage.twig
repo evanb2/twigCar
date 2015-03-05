@@ -6,29 +6,32 @@
 </head>
 <body>
     <h1>Jumping Car Dealership</h1>
-    <div class="container">
-    <ul>
-        <?php
-            if (empty($cars_matching_search)) {
-                echo "We're out of jumping cars at that price/mileage!!!";
-            } else {
-                foreach ($cars_matching_search as $car) {
-                    echo '<div class="row">';
-                    echo '<div class="col-md-4 empty"></div>';
-                    echo '<div class="col-md-4 car">';
-                    echo "<li><h3> " . $car->getModel() . " </h3></li>";
-                    echo "<ul>";
-                        echo "<li> $" . $car->getPrice() . " </li>";
-                        echo "<li> <strong>Miles:</strong> " . $car->getMiles() . " </li>";
-                        echo '<li><img src="' . $car->getImage() . '"></li>';
-                    echo "</ul>";
-                    echo "<p />";
-                    echo '</div>';
-                    echo '<div class="col-md-4 empty"></div></div>';
-                }
-            }
-        ?>
-    </ul>
-    </div>
+    {% if cars is not empty %}
+        <p>Car Listing</p>
+        <ul>
+            {% for car in cars %}
+                <li>{{ car.getModel }}</li>
+                <li>{{ car.getPrice }}</li>
+                <li>{{ car.getMiles }}</li>
+                <li>{{ car.getImage }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form action='/car_homepage' method='post'>
+        <label for='model'>Model: </label>
+        <input id='model' name='model' type='text'>
+        <label for='price'>Price: </label>
+        <input id='price' name='price' type='text'>
+        <label for='miles'>Miles: </label>
+        <input id='miles' name='miles' type='text'>
+        <label for='image'>Image: </label>
+        <input id='image' name='image' type='text'>
+
+        <button type='submit'>Add Post</button>
+    </form>
+    <form action='/delete_cars' method='post'>
+        <button type='submit'>Delete</button>
+    </form>
 </body>
 </html>

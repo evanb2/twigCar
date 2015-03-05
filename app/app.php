@@ -13,8 +13,20 @@
     ));
 
     $app->get("/", function() use ($app) {
-        return $app['twig']->render('car_homepage.twig', array('cars'))
+        return $app['twig']->render('car_homepage.twig', array('cars' => Car::getAll()));
     });
+
+    $app->post("/listing", function() use ($app) {
+        $car = new Car($_POST['make', 'price', 'miles', 'image']);
+        $car ->save();
+        return $app['twig']->render('create_car.twig', array('newcar' => $car));
+    });
+
+    $app->post("/delete_cars", function() use ($app) {
+        Car::deleteAll();
+        return $app['twig']->render('delete_cars.twig');
+    });
+
 
     return $app;
 ?>
