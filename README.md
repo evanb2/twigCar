@@ -1,9 +1,7 @@
 # Name: Evan Butler & Patrick Fiorentino
-# Date: April 24, 2015.
+# Date: March 5, 2015.
 
-Description: Assessment7 - Create a site for allowing students to sign in to class for the day.
-
-# SetUp and Use
+Description: Car dealership site.
 
 ##SetUp
 
